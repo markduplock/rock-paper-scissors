@@ -1,13 +1,23 @@
 import random
 
 
+def track_score(result, player_score, cpu_score):
+    if result == "player":
+        player_score += 1
+
+    if result == "cpu":
+        cpu_score += 1
+
+    return player_score, cpu_score
+
+
 def show_winner(result):
     if result == "player":
-        print("You Win!\n\n")
+        print("You Win!\n")
     elif result == "cpu":
-        print("You Lose!\n\n")
+        print("You Lose!\n")
     else:
-        print("It's a draw!\n\n")
+        print("It's a draw!\n")
 
 
 def determine_winner(player_input, cpu_choice):
@@ -43,6 +53,9 @@ def get_player_input():
 
 
 def main():
+    player_score = 0
+    cpu_score = 0
+
     while True:
         player_input = get_player_input()
         if player_input == "quit":
@@ -51,6 +64,8 @@ def main():
         print(f"You chose {player_input}. CPU chose {cpu_choice}")
         result = determine_winner(player_input, cpu_choice)
         show_winner(result)
+        player_score, cpu_score = track_score(result, player_score, cpu_score)
+        print(f"You: {player_score} | CPU: {cpu_score}\n")
 
 
 if __name__ == "__main__":
