@@ -1,5 +1,4 @@
 import random
-import sys
 
 
 def show_winner(result):
@@ -17,8 +16,6 @@ def determine_winner(player_input, cpu_choice):
         "paper": "rock",
         "scissors": "paper",
     }
-
-    print(f"You chose {player_input}. CPU chose {cpu_choice}")
 
     if player_input == cpu_choice:
         return "draw"
@@ -42,15 +39,16 @@ def get_player_input():
         )
         if player_input in options:
             return player_input
-        print("Not a vaild option")
+        print("Not a valid option")
 
 
 def main():
     while True:
         player_input = get_player_input()
         if player_input == "quit":
-            sys.exit(0)
+            break
         cpu_choice = get_cpu_choice()
+        print(f"You chose {player_input}. CPU chose {cpu_choice}")
         result = determine_winner(player_input, cpu_choice)
         show_winner(result)
 
