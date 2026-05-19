@@ -1,0 +1,9 @@
+# Rock Paper Scissors Game
+
+- Ask the player to pick rock, paper or scissors.
+- Have the computer choose its move.
+- Compare the choices and decide who wins.
+- Print the results.
+  - Subgoals:
+    - Give the player the option to play again.
+    - Keep a record of the score (e.g. Player: 3 / Computer: 6).
