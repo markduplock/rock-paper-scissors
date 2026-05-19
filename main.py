@@ -1,14 +1,19 @@
 import random
 
 
-def track_score(result, player_score, cpu_score):
+def show_score(player_score, cpu_score, draw_score):
+    print(f"You: {player_score} | CPU: {cpu_score} | Draws: {draw_score}\n")
+
+
+def track_score(result, player_score, cpu_score, draw_score):
     if result == "player":
         player_score += 1
-
-    if result == "cpu":
+    elif result == "cpu":
         cpu_score += 1
+    elif result == "draw":
+        draw_score += 1
 
-    return player_score, cpu_score
+    return player_score, cpu_score, draw_score
 
 
 def show_winner(result):
@@ -37,12 +42,12 @@ def determine_winner(player_input, cpu_choice):
 
 
 def get_cpu_choice():
-    options = ["rock", "paper", "scissors"]
+    options = ("rock", "paper", "scissors")
     return random.choice(options)
 
 
 def get_player_input():
-    options = ["rock", "paper", "scissors", "quit"]
+    options = ("rock", "paper", "scissors", "quit")
     while True:
         player_input = (
             input("Choose: 'rock', 'paper', 'scissors', or 'quit': ").strip().lower()
@@ -55,17 +60,22 @@ def get_player_input():
 def main():
     player_score = 0
     cpu_score = 0
+    draw_score = 0
 
     while True:
         player_input = get_player_input()
         if player_input == "quit":
+            print("\nFinal score:")
+            show_score(player_score, cpu_score, draw_score)
             break
         cpu_choice = get_cpu_choice()
-        print(f"You chose {player_input}. CPU chose {cpu_choice}")
+        print(f"\nYou chose {player_input}. CPU chose {cpu_choice}")
         result = determine_winner(player_input, cpu_choice)
         show_winner(result)
-        player_score, cpu_score = track_score(result, player_score, cpu_score)
-        print(f"You: {player_score} | CPU: {cpu_score}\n")
+        player_score, cpu_score, draw_score = track_score(
+            result, player_score, cpu_score, draw_score
+        )
+        show_score(player_score, cpu_score, draw_score)
 
 
 if __name__ == "__main__":
